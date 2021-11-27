@@ -4,13 +4,21 @@ const CopyPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/index.ts',
+  resolve: {
+    extensions: ['.js', '.ts'],
+  },
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.ts$/,
+        use: ['ts-loader'],
         exclude: /node_modules/,
+      },
+      {
+        test: /\.js$/,
         use: ['babel-loader'],
+        exclude: /node_modules/,
       },
       {
         test: /\.html$/i,
