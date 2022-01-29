@@ -1,0 +1,43 @@
+.filters {
+  .form-search {
+    margin: 0 auto 30px;
+    display: flex;
+    flex-direction: column;
+
+    @media screen and (min-width: 480px) {
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .brands {
+      margin: 15px 0;
+      padding: 5px 3px;
+      max-width: 200px;
+      border-radius: 4px;
+      align-self: flex-end;
+
+      @media screen and (min-width: 480px) {
+        order: 2;
+      }
+    }
+
+    &__input {
+      width: 100%;
+      padding: 10px 15px;
+      border: 1px solid black;
+      border-radius: 4px;
+      outline: none;
+
+      @media screen and (min-width: 480px) {
+        flex-basis: 400px;
+        order: 1;
+      }
+
+      &::placeholder {
+        color: #333;
+      }
+    }
+  }
+}

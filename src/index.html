@@ -4,7 +4,60 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Laptop Ecommerce</title>
+    <title>Laptop E-commerce</title>
   </head>
-  <body></body>
+  <body>
+    <header class="header">
+      <div class="wrapper">
+        <div class="header__content">
+          <img
+            src="./assets/images/logo.png"
+            class="main-logo"
+            width="55px"
+            alt="Logo principal"
+            title="Logo principal"
+          />
+
+          <div class="cart">
+            <img
+              src="./assets/images/cart.svg"
+              class="cart__icon"
+              width="25px"
+              alt="Logo del carrito de compras"
+              title="Carrito de compras"
+            />
+            <span class="cart__counter" id="cartCounter">0</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="main">
+      <div class="wrapper">
+        <h1 class="main__title">Laptops</h1>
+
+        <section class="filters">
+          <form class="form-search" id="formSearch">
+            <select class="brands" name="brands" id="brands">
+              <option value="Filtrar por marcas">Filtrar por marcas</option>
+              <option value="Samsung">Samsung</option>
+              <option value="Lenovo">Lenovo</option>
+              <option value="Apple">Apple</option>
+              <option value="Dell">Dell</option>
+              <option value="HP">HP</option>
+            </select>
+
+            <input
+              class="form-search__input"
+              type="search"
+              placeholder="Busca tu laptop favorita"
+              autocomplete="off"
+              autofocus
+              id="formSearchInput"
+            />
+          </form>
+        </section>
+      </div>
+    </main>
+  </body>
 </html>

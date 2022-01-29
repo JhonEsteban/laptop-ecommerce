@@ -1,0 +1,9 @@
+.main {
+  @include wrapper;
+  margin-top: 65px;
+
+  &__title {
+    padding-top: 30px;
+    text-align: center;
+  }
+}

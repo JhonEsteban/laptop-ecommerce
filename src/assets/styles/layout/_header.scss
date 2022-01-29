@@ -1,0 +1,36 @@
+.header {
+  position: fixed;
+  width: 100%;
+  padding: 10px 0;
+  background-color: black;
+  top: 0;
+  left: 0;
+
+  &__content {
+    @include wrapper;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .cart {
+    position: relative;
+    cursor: pointer;
+
+    &__icon {
+      width: 30px;
+    }
+
+    &__counter {
+      position: absolute;
+      width: 26px;
+      height: 26px;
+      background-color: #4bbfeb;
+      border-radius: 50%;
+      text-align: center;
+      top: -13px;
+      right: -8px;
+      z-index: 10;
+    }
+  }
+}
