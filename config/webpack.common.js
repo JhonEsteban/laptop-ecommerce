@@ -61,8 +61,8 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Webpack Boilerplate',
       template: './src/index.html',
+      favicon: './src/assets/images/logo.png',
     }),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css',

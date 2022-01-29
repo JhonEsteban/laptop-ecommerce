@@ -1,7 +1,7 @@
 {
-  "name": "webpack-boilerplate",
+  "name": "laptop-ecommerce",
   "version": "1.0.0",
-  "description": "Webpack configuration for Vanilla JS projects ",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "build": "webpack --config config/webpack.prod.js",
@@ -11,17 +11,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JhonEsteban/Webpack-Boilerplate.git"
+    "url": "git+https://github.com/JhonEsteban/laptop-ecommerce.git"
   },
-  "keywords": [
-    "webpack"
-  ],
+  "keywords": [],
   "author": "Jhon Esteban Herrera <estebanhz9919@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/JhonEsteban/Webpack-Boilerplate/issues"
+    "url": "https://github.com/JhonEsteban/laptop-ecommerce/issues"
   },
-  "homepage": "https://github.com/JhonEsteban/Webpack-Boilerplate#readme",
+  "homepage": "https://github.com/JhonEsteban/laptop-ecommerce#readme",
   "devDependencies": {
     "@babel/core": "^7.12.13",
     "@babel/plugin-transform-runtime": "^7.12.15",
