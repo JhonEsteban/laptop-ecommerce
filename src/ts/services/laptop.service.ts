@@ -8,19 +8,19 @@ class LaptopService {
     this.laptops = laptos;
   }
 
-  getAllLaptops(): Promise<Laptop[]> {
+  public getAllLaptops(): Promise<Laptop[]> {
     return new Promise((resolve) => {
       setTimeout(() => resolve(this.laptops), 1000);
     });
   }
 
-  searchLaptopsByName(name: string): Laptop[] {
+  public searchLaptopsByName(name: string): Laptop[] {
     return this.laptops.filter((laptop) =>
       laptop.name.toLowerCase().includes(name.toLowerCase())
     );
   }
 
-  filterLaptopsByBrand(brand: string): Laptop[] {
+  public filterLaptopsByBrand(brand: string): Laptop[] {
     return this.laptops.filter((laptop) => laptop.brand === brand);
   }
 }

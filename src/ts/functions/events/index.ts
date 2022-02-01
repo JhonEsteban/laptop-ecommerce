@@ -1,3 +1,5 @@
 import loadEvent from './loadEvent';
+import submitEvent from './submitEvent';
+import selectChangeEvent from './selectChangeEvent';
 
-export { loadEvent };
+export { loadEvent, submitEvent, selectChangeEvent };

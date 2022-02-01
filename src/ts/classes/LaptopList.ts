@@ -12,7 +12,7 @@ class LaptopList {
     this.laptopService = new LaptopService();
   }
 
-  loadLaptops(): void {
+  public loadLaptops(): void {
     this.$laptopsSection.appendChild(this.loaderTemplate());
 
     this.laptopService.getAllLaptops().then((laptops) => {
@@ -21,11 +21,28 @@ class LaptopList {
     });
   }
 
-  renderLaptops(laptops: Laptop[]): void {
+  public searchLaptopsByName(name: string): void {
+    const laptopsFiltered = this.laptopService.searchLaptopsByName(name);
+    this.renderLaptops(laptopsFiltered);
+  }
+
+  public filterLaptopsByBrand(name: string): void {
+    if (name === 'Filtrar por marcas') {
+      this.renderLaptops(this.laptops);
+      return;
+    }
+
+    const laptopsFiltered = this.laptopService.filterLaptopsByBrand(name);
+    this.renderLaptops(laptopsFiltered);
+  }
+
+  private renderLaptops(laptops: Laptop[]): void {
     const $fragment = document.createDocumentFragment();
     const $loader = document.getElementById('loader') as HTMLElement;
 
-    $loader.remove();
+    $loader.classList.add('hide');
+
+    this.$laptopList.innerHTML = '';
 
     laptops.forEach((laptop) => {
       const $laptopTemplate = this.laptopTemplate(laptop);
@@ -35,14 +52,7 @@ class LaptopList {
     this.$laptopList.appendChild($fragment);
   }
 
-  convertToColombianCurrency(price: number): string {
-    const options = { style: 'currency', currency: 'COP' };
-    const currencyFormat = new Intl.NumberFormat('es-CO', options);
-
-    return currencyFormat.format(price);
-  }
-
-  loaderTemplate(): HTMLDivElement {
+  private loaderTemplate(): HTMLDivElement {
     const $loaderTemplate = document.createElement('div');
 
     $loaderTemplate.classList.add('loader');
@@ -51,7 +61,20 @@ class LaptopList {
     return $loaderTemplate;
   }
 
-  laptopTemplate({ id, name, price, model, image }: Laptop): HTMLElement {
+  private convertToColombianCurrency(price: number): string {
+    const options = { style: 'currency', currency: 'COP' };
+    const currencyFormat = new Intl.NumberFormat('es-CO', options);
+
+    return currencyFormat.format(price);
+  }
+
+  private laptopTemplate({
+    id,
+    name,
+    price,
+    model,
+    image,
+  }: Laptop): HTMLElement {
     const $laptopTemplate = document.createElement('article');
 
     $laptopTemplate.classList.add('laptop');
