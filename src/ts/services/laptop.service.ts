@@ -23,6 +23,10 @@ class LaptopService {
   public filterLaptopsByBrand(brand: string): Laptop[] {
     return this.laptops.filter((laptop) => laptop.brand === brand);
   }
+
+  public filterLaptopById(id: string): Laptop[] {
+    return this.laptops.filter((laptop) => laptop.id === id);
+  }
 }
 
 export default LaptopService;

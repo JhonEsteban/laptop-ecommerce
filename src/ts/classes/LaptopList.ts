@@ -1,15 +1,17 @@
 import { Laptop } from '../interfaces';
-import LaptopService from '../services/laptop.service';
+import { CurrencyService, LaptopService } from '../services';
 
 class LaptopList {
   private laptops: Laptop[];
   private laptopService: LaptopService;
+  private currencyService: CurrencyService;
   private $laptopList = document.getElementById('laptopList') as HTMLElement;
   private $laptopsSection = document.getElementById('laptops') as HTMLElement;
 
   constructor() {
     this.laptops = [];
     this.laptopService = new LaptopService();
+    this.currencyService = new CurrencyService();
   }
 
   public loadLaptops(): void {
@@ -34,6 +36,10 @@ class LaptopList {
 
     const laptopsFiltered = this.laptopService.filterLaptopsByBrand(name);
     this.renderLaptops(laptopsFiltered);
+  }
+
+  public filterLaptopById(id: string): Laptop[] {
+    return this.laptopService.filterLaptopById(id);
   }
 
   private renderLaptops(laptops: Laptop[]): void {
@@ -61,13 +67,6 @@ class LaptopList {
     return $loaderTemplate;
   }
 
-  private convertToColombianCurrency(price: number): string {
-    const options = { style: 'currency', currency: 'COP' };
-    const currencyFormat = new Intl.NumberFormat('es-CO', options);
-
-    return currencyFormat.format(price);
-  }
-
   private laptopTemplate({
     id,
     name,
@@ -80,7 +79,9 @@ class LaptopList {
     $laptopTemplate.classList.add('laptop');
     $laptopTemplate.setAttribute('id', id);
 
-    const colombianPrice = this.convertToColombianCurrency(price);
+    const colombianPrice = this.currencyService.convertToColombianCurrency(
+      price
+    );
 
     $laptopTemplate.innerHTML = `
       <img

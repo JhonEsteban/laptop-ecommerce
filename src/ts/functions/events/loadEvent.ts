@@ -1,8 +1,9 @@
-import { LaptopList } from '../../classes';
+import { LaptopList, ShoppingCart } from '../../classes';
 
-const loadEvent = (laptopList: LaptopList) => {
+const loadEvent = (laptopList: LaptopList, shoppingCart: ShoppingCart) => {
   window.addEventListener('DOMContentLoaded', () => {
     laptopList.loadLaptops();
+    shoppingCart.loadCart();
   });
 };
 
