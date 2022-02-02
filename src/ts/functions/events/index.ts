@@ -1,8 +1,10 @@
 import loadEvent from './loadEvent';
 import submitEvent from './submitEvent';
 import selectChangeEvent from './selectChangeEvent';
-import laptopClickEvent from './laptopClickEvent';
-import cartIconClickEvent from './cartIconClickEvent';
+import laptopClickEvent from './clickEvents/laptopClickEvent';
+import cartIconClickEvent from './clickEvents/cartIconClickEvent';
+import cartButtonClickEvent from './clickEvents/cartButtonClickEvent';
+import laptopCardClickEvent from './clickEvents/laptopCardClickEvent';
 
 export {
   loadEvent,
@@ -10,4 +12,6 @@ export {
   selectChangeEvent,
   laptopClickEvent,
   cartIconClickEvent,
+  cartButtonClickEvent,
+  laptopCardClickEvent,
 };

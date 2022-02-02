@@ -1,6 +1,6 @@
-import { LaptopList, ShoppingCart } from '../../classes';
+import { LaptopList, ShoppingCart } from '../../../classes';
 
-import addLaptopToCart from '../laptop/addLaptopToCart';
+import addLaptopToCart from '../../laptop/addLaptopToCart';
 
 const laptopClickEvent = (
   laptopList: LaptopList,

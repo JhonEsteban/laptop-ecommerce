@@ -1,4 +1,4 @@
-import openShoppingCart from '../cart/openShoppingCart';
+import openShoppingCart from '../../cart/openShoppingCart';
 
 const cartIconClickEvent = () => {
   const $cart = document.getElementById('cart') as HTMLDivElement;

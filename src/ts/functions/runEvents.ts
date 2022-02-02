@@ -6,6 +6,8 @@ import {
   selectChangeEvent,
   laptopClickEvent,
   cartIconClickEvent,
+  cartButtonClickEvent,
+  laptopCardClickEvent,
 } from './events';
 
 const runEvents = () => {
@@ -18,6 +20,8 @@ const runEvents = () => {
 
   cartIconClickEvent();
   laptopClickEvent(laptopList, shoppingCart);
+  cartButtonClickEvent(shoppingCart);
+  laptopCardClickEvent(shoppingCart);
 };
 
 export default runEvents;

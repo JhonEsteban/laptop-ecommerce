@@ -24,16 +24,85 @@ class ShoppingCart {
     this.cart = [];
     this.counter = new Counter();
     this.currencyService = new CurrencyService();
-    this.$cartCounter.textContent = this.counter.count.toString();
-    this.$totalLaptops.textContent = this.counter.count.toString();
+    this.updateCounter();
   }
 
   public loadCart() {
     const isCartEmpty = this.cart.length === 0 && this.counter.count === 0;
 
-    if (isCartEmpty) {
-      this.$cartContainer.appendChild(this.cartEmptyTemplate());
+    if (!isCartEmpty) {
+      return;
     }
+
+    this.$cartContainer.appendChild(this.cartEmptyTemplate());
+    this.getTotalLaptopsPrice();
+  }
+
+  public addLaptopToCart(newLaptop: LaptopCart): void {
+    this.checkAndCleanDuplicateLaptops(newLaptop);
+    this.renderCart(this.cart);
+
+    this.counter.increment();
+    this.updateCounter();
+    this.getTotalLaptopsPrice();
+  }
+
+  public clearCart(): void {
+    this.cart = [];
+    this.renderCart(this.cart);
+
+    this.counter.reset();
+    this.updateCounter();
+    this.loadCart();
+  }
+
+  public deleteLaptopFromCart(id: string): void {
+    const amount = this.getLaptopCartAmountById(id);
+    this.cart = this.cart.filter((laptopCart) => laptopCart.id !== id);
+
+    this.renderCart(this.cart);
+    this.counter.decrementCustomCount(amount);
+    this.updateCounter();
+    this.getTotalLaptopsPrice();
+    this.loadCart();
+  }
+
+  public incrementLaptopAmount(id: string): void {
+    this.cart = this.cart.map((laptopCart) =>
+      laptopCart.id === id
+        ? { ...laptopCart, amount: laptopCart.amount + 1 }
+        : laptopCart
+    );
+
+    this.renderCart(this.cart);
+    this.counter.increment();
+    this.updateCounter();
+    this.getTotalLaptopsPrice();
+  }
+
+  public decrementLaptopAmount(id: string): void {
+    const amount = this.getLaptopCartAmountById(id);
+    const intialAmount = 1;
+
+    const $laptopCardDeleteButton = document.querySelector(
+      '.options__two'
+    ) as HTMLButtonElement;
+
+    if (amount === intialAmount) {
+      $laptopCardDeleteButton.classList.add('inactive');
+      return;
+    }
+
+    this.cart = this.cart.map((laptopCart) =>
+      laptopCart.id === id
+        ? { ...laptopCart, amount: laptopCart.amount - 1 }
+        : laptopCart
+    );
+
+    this.renderCart(this.cart);
+    this.counter.decrement();
+    this.updateCounter();
+    this.getTotalLaptopsPrice();
   }
 
   private cartEmptyTemplate() {
@@ -45,11 +114,11 @@ class ShoppingCart {
     return $cartEmptyTemplate;
   }
 
-  public addLaptopToCart(newLaptop: LaptopCart): void {
-    this.checkAndCleanDuplicateLaptops(newLaptop);
-    this.renderCart(this.cart);
-    this.updateCounter();
-    this.getTotalLaptopsPrice();
+  private getLaptopCartAmountById(id: string) {
+    const [laptopCard] = this.cart.filter((laptop) => laptop.id === id);
+    const { amount } = laptopCard;
+
+    return amount;
   }
 
   private checkAndCleanDuplicateLaptops(newLaptop: LaptopCart): void {
@@ -58,7 +127,7 @@ class ShoppingCart {
     );
 
     if (!hasDuplicates) {
-      this.cart = [...this.cart, newLaptop];
+      this.cart = [newLaptop, ...this.cart];
       return;
     }
 
@@ -135,7 +204,6 @@ class ShoppingCart {
   }
 
   private updateCounter(): void {
-    this.counter.increment();
     this.$cartCounter.textContent = this.counter.count.toString();
     this.$totalLaptops.textContent = this.counter.count.toString();
   }
