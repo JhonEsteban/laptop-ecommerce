@@ -2,12 +2,13 @@ import { LaptopCart } from '../interfaces';
 
 import Counter from './Counter';
 
-import { CurrencyService } from '../services';
+import { AlertService, CurrencyService } from '../services';
 
 class ShoppingCart {
   private cart: LaptopCart[];
   private counter: Counter;
   private currencyService: CurrencyService;
+  private alertService: AlertService;
 
   private $cartContainer = document.getElementById(
     'cartContainer'
@@ -24,6 +25,7 @@ class ShoppingCart {
     this.cart = [];
     this.counter = new Counter();
     this.currencyService = new CurrencyService();
+    this.alertService = new AlertService();
     this.updateCounter();
   }
 
@@ -45,6 +47,7 @@ class ShoppingCart {
     this.counter.increment();
     this.updateCounter();
     this.getTotalLaptopsPrice();
+    this.alertService.showSuccessAlert('Laptop agregada al carrito!');
   }
 
   public clearCart(): void {
@@ -54,6 +57,7 @@ class ShoppingCart {
     this.counter.reset();
     this.updateCounter();
     this.loadCart();
+    this.alertService.showSuccessAlert('Se vació el carrito!');
   }
 
   public deleteLaptopFromCart(id: string): void {
@@ -65,6 +69,7 @@ class ShoppingCart {
     this.updateCounter();
     this.getTotalLaptopsPrice();
     this.loadCart();
+    this.alertService.showSuccessAlert('Laptop eliminada del carrito!');
   }
 
   public incrementLaptopAmount(id: string): void {

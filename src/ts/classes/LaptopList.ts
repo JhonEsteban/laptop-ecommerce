@@ -98,7 +98,16 @@ class LaptopList {
 
       <p class="laptop__price">${colombianPrice}</p>
 
-      <button class="laptop__button" type="button">Comprar</button>
+      <button class="laptop-button" type="button">
+        <span class="laptop-button__text">Añadir al</span> 
+
+        <img  
+          src="https://i.imgur.com/01DHmE6.png" 
+          class="laptop-button__image"
+          alt="Logo del carrito de compras" 
+          title="Logo del carrito de compras"  
+        />
+      </button>
     `;
 
     return $laptopTemplate;

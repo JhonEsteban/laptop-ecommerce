@@ -5,7 +5,7 @@ const cartButtonClickEvent = (shoppingCart: ShoppingCart) => {
     'clearCart'
   ) as HTMLButtonElement;
 
-  $clearCartButton.addEventListener('click', (e) => {
+  $clearCartButton.addEventListener('click', () => {
     shoppingCart.clearCart();
   });
 };

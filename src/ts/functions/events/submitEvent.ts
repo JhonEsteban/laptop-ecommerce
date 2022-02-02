@@ -7,7 +7,6 @@ const submitEvent = (laptopList: LaptopList) => {
 
   $form.addEventListener('submit', (e) => {
     e.preventDefault();
-
     getInputValue(laptopList, $form);
   });
 };

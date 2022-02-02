@@ -1,5 +1,8 @@
 import { LaptopList, ShoppingCart } from '../../classes';
-import { LaptopCart } from '../../interfaces';
+
+import verifyIsTypeLaptopButton from './verifyIsTypeLaptopButton';
+import getLaptopId from './getLaptopId';
+import setNewLaptopCart from './setNewLaptopCart';
 
 const addLaptopToCart = (
   e: Event,
@@ -7,23 +10,16 @@ const addLaptopToCart = (
   shoppingCart: ShoppingCart
 ) => {
   const element = e.target as HTMLElement;
-  const isLaptopButton = element.classList.contains('laptop__button');
+  const isLaptopButton = verifyIsTypeLaptopButton(element);
 
-  if (isLaptopButton) {
-    const laptopCard = element.parentElement as HTMLElement;
-    const laptopCardId = laptopCard.getAttribute('id') as string;
-
-    const [laptop] = laptopList.filterLaptopById(laptopCardId);
-
-    const newLaptop: LaptopCart = {
-      id: laptop.id,
-      name: `${laptop.name} ${laptop.model}`,
-      price: laptop.price,
-      amount: 1,
-    };
-
-    shoppingCart.addLaptopToCart(newLaptop);
+  if (!isLaptopButton) {
+    return;
   }
+
+  const laptopId = getLaptopId(element);
+  const newLaptop = setNewLaptopCart(laptopList, laptopId);
+
+  shoppingCart.addLaptopToCart(newLaptop);
 };
 
 export default addLaptopToCart;
